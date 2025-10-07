@@ -1,72 +1,79 @@
-# ML_MultiModal_Analysis
-Using DeepLearning for Multi Modal sentiment Analysis 
 # Multi-modal Emotion Recognition: Text, Audio, and Video Fusion
 
-## 👨‍💻 Team Information
-| Name | SRN | Section |
-| :--- | :--- | :--- |
-| NS TUSHAR | PES2UG22CS327 | F |
-| MRUNAL ANANDACHE | PES2UG22CS323 | F |
-| M V PARTH | PES2UG22CS325 | F |
-| SHAMBHAVI RAIKAR | PESS2UG22CS919 | F |
+## 🎯 Project Overview
+[cite_start]Developed for the **PES University Machine Learning Hackathon**[cite: 3], this project focuses on building a **multi-modal** classification model for emotion recognition. [cite_start]By leveraging features extracted from **Text, Audio, and Video** data, we aim to capture a comprehensive understanding of emotional states, significantly improving prediction accuracy compared to a single-modality approach[cite: 98].
 
 ---
 
-## 🎯 Project Overview
-This project, developed for the **PES University Machine Learning Hackathon**, focuses on building a multi-modal classification model for emotion recognition. We leverage features extracted from **Text**, **Audio**, and **Video** data to capture a comprehensive understanding of emotional states, aiming to enhance prediction accuracy compared to a single-modality approach.
+## 👨‍💻 Team Information
+
+| Name | SRN | Section |
+| :--- | :--- | :--- |
+| NS TUSHAR | PES2UG22CS327 | [cite_start]F [cite: 6, 8, 5] |
+| MRUNAL ANANDACHE | PES2UG22CS323 | [cite_start]F [cite: 9, 11, 5] |
+| M V PARTH | PES2UG22CS325 | [cite_start]F [cite: 12, 14, 5] |
+| SHAMBHAVI RAIKAR | PESS2UG22CS919 | [cite_start]F [cite: 15, 17, 5] |
+
+---
 
 ## 🛠️ Data Preprocessing & Feature Extraction
 
 ### 1. Text Modality
-| Step | Technique/Function | Purpose |
+
+| Step | Technique | Purpose |
 | :--- | :--- | :--- |
-| **Cleaning** | Custom function (`Text Preprocessing Function`) | [cite_start]Removal of non-alphabetic characters (punctuation, numbers) and conversion to lowercase to standardize the text data. [cite: 20, 21, 39] |
-| **Tokenization** | NLTK's `word_tokenize` | [cite_start]Breaking down the utterance into individual words for word-level analysis. [cite: 23, 40] |
-| **Stopword Removal** | NLTK Stopword List | [cite_start]Removing common words (e.g., "the," "is") to reduce noise and enhance semantic focus. [cite: 23, 47] |
-| **Feature Extraction** | **`TfidfVectorizer`** | [cite_start]Used to extract meaningful features by calculating the Term Frequency-Inverse Document Frequency of tokens. [cite: 73, 74] |
+| **Cleaning** | [cite_start]Non-alphabetic character removal and lowercasing [cite: 20, 21] | [cite_start]Standardizes text by reducing variations caused by punctuation or capitalization[cite: 23]. |
+| **Tokenization** | [cite_start]NLTK `word_tokenize` [cite: 23, 40] | [cite_start]Breaks down text into smaller units (words) for analysis[cite: 40, 46]. |
+| **Stopword Removal** | [cite_start]NLTK Stopword List [cite: 23] | [cite_start]Removes common words (e.g., "the", "is") that carry little semantic meaning to reduce noise[cite: 47]. |
+| **Features** | [cite_start]**`TfidfVectorizer`** [cite: 74] | [cite_start]Extracts meaningful, weighted features from the cleaned text data[cite: 74, 49]. |
 
 ### 2. Audio Modality
-| Feature | Library/Function | Purpose |
+
+| Feature | Library/Concept | Purpose |
 | :--- | :--- | :--- |
-| **Raw Extraction** | `pydub` | [cite_start]Extracting audio streams from the provided video datasets. [cite: 26] |
-| **Waveform Conversion** | `Librosa` | [cite_start]Loading audio files and converting them into numerical arrays. [cite: 51, 52] |
-| **MFCC** | `librosa` | Captures the **timbral texture** of the audio, crucial for recognizing speech and emotions. (Mean of the first 13 coefficients used)[cite_start]. [cite: 54, 55, 87] |
-| **Chroma** | `librosa` | [cite_start]Related to the **pitch content**, useful for harmony and tonality analysis. [cite: 58, 88] |
-| **Spectral Contrast** | `librosa` | [cite_start]Measures amplitude differences between peaks and valleys, capturing **timbral texture**. [cite: 61, 89] |
-| **Zero Crossing Rate** | `librosa` | [cite_start]Rate of signal sign change, used for distinguishing between percussive and non-percussive sounds (or speech/music separation). [cite: 64, 90] |
-| **Tempo** | `librosa` | [cite_start]Measures the speed (BPM) of the audio, correlating with emotional states. [cite: 67, 91] |
+| **Extraction** | [cite_start]`pydub` [cite: 26] | [cite_start]Extracts the audio component from video datasets[cite: 26]. |
+| **Conversion** | [cite_start]`Librosa` [cite: 51] | [cite_start]Loads audio and converts it into numerical waveform arrays[cite: 52]. |
+| **MFCC** | (Mean of the first 13 coefficients) [cite_start][cite: 55] | [cite_start]Captures **timbral texture**, crucial for speech and emotion recognition[cite: 55, 87]. |
+| **Chroma** | [cite_start]`librosa` [cite: 58] | [cite_start]Represents the **pitch content**, useful for harmony and music analysis[cite: 58, 88]. |
+| **Spectral Contrast** | [cite_start]`librosa` [cite: 61] | [cite_start]Measures amplitude differences between peaks/valleys, capturing timbral texture[cite: 61, 89]. |
+| **Zero Crossing Rate** | [cite_start]`librosa` [cite: 64] | [cite_start]Rate of signal sign change, useful for distinguishing percussive/non-percussive sounds[cite: 65, 90]. |
+| **Tempo** | [cite_start]`librosa` [cite: 67] | [cite_start]Measures the speed (BPM) of the audio, correlating with emotional states[cite: 67, 91]. |
 
 ### 3. Video Modality
-| Feature | Extraction Method | Purpose |
+
+| Feature | Method | Purpose |
 | :--- | :--- | :--- |
-| **Frame Capture** | `extract_video_features` | [cite_start]Captures **5 evenly spaced frames** per video, resized to $64 \times 64$ pixels to reduce computational complexity. [cite: 30, 31] |
-| **Padding** | Frame Repetition | [cite_start]Ensures consistency by repeating the last frame if a video has fewer than 5 frames. [cite: 32] |
-| **Optical Flow** | Used during feature extraction | [cite_start]Measures **motion between consecutive frames** to capture movement patterns and physical gestures related to emotion. [cite: 93] |
-| **Color Histogram** | Used during feature extraction | [cite_start]Provides **color distribution information** as emotions can sometimes be associated with specific color patterns. [cite: 94] |
+| **Frame Capture** | [cite_start]5 evenly spaced frames, resized to $64 \times 64$ pixels [cite: 30, 31] | [cite_start]Reduces computational complexity and ensures consistent input dimensions[cite: 31]. |
+| **Padding** | [cite_start]Last frame repetition [cite: 32] | [cite_start]Ensures frame consistency for videos shorter than the required number of frames[cite: 32]. |
+| **Optical Flow** | [cite_start]Used during extraction [cite: 93] | [cite_start]Measures motion between frames to capture movement patterns and gestures associated with emotion[cite: 93]. |
+| **Color Histogram** | [cite_start]Used during extraction [cite: 94] | [cite_start]Provides color distribution information, which can be useful as an emotional cue[cite: 94]. |
 
 ---
 
-## 융 Fusion and Modeling
+## 🔄 Fusion & Modeling
 
-### Feature Fusion
-[cite_start]We adopted an **Early Fusion** approach[cite: 75, 76].
-* [cite_start]Text and video features were combined using `np.hstack()` to create a single feature set[cite: 70].
-* [cite_start]Similarly, for the Audio-Text model, both features are concatenated into a single feature vector before model input, allowing the model to learn from both modalities simultaneously[cite: 77, 79, 80].
+### Feature Fusion Strategy
+[cite_start]We implement an **Early Fusion** strategy[cite: 75, 76].
+* [cite_start]Modality features (e.g., Text + Video, or Text + Audio) are concatenated horizontally using `np.hstack()`[cite: 70, 77, 79].
+* [cite_start]This single, combined feature vector is then fed into the model for training, allowing the model to learn from both modalities simultaneously[cite: 78, 80].
 
 ### Dimensionality Reduction
-* [cite_start]**Principal Component Analysis (PCA)** is applied to the audio features after standardization using `StandardScaler`[cite: 95]. [cite_start]This is done to reduce the feature space, mitigate the risk of **overfitting**, and improve the model's generalization performance[cite: 96, 97, 99].
+* [cite_start]**Principal Component Analysis (PCA)** is applied to the standardized audio features via `StandardScaler`[cite: 95].
+* [cite_start]This reduces the feature space while retaining most of the variance, mitigating the risk of **overfitting** and speeding up training[cite: 96, 99].
 
-### Model Selection
-* [cite_start]A **Random Forest Classifier** was chosen[cite: 100]. It is well-suited for handling high-dimensional data, imbalanced classes, and offers good interpretability.
+### Classifier
+* [cite_start]**Random Forest Classifier** [cite: 100] [cite_start]was chosen for its robustness in handling high-dimensional data and potentially imbalanced classes, while also offering high interpretability[cite: 100].
 
 ---
 
-## 📊 Results and Analysis
+## 📊 Performance Analysis
+
+[cite_start]The model was evaluated on a validation set using the Random Forest Classifier trained on combined features[cite: 102, 103].
 
 | Modality Combination | Accuracy Score |
 | :--- | :--- |
-| Audio-Text Combined Features | [cite_start]**0.50** [cite: 104] |
-| Video-Text Combined Features | [cite_start]**0.48** [cite: 105] |
+| Audio + Text Combined Features | [cite_start]**0.50** [cite: 104] |
+| Video + Text Combined Features | [cite_start]**0.48** [cite: 105] |
 
-### Monomodal Evaluation (Text)
-[cite_start]In the testing phase, an evaluation was also conducted using **only the text modality**[cite: 81]. [cite_start]The trained text model processed the text input, and its performance was assessed using standard classification metrics (accuracy, F1-score, precision)[cite: 84]. [cite_start]This highlights the individual contribution of the text data to the model's overall performance[cite: 83].
+### Monomodal Evaluation
+The Text-only model was also evaluated during testing to highlight the individual contribution of the linguistic modality. [cite_start]Its performance was assessed using metrics like accuracy, F1-score, and precision[cite: 84].
