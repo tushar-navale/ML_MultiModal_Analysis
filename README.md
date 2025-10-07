@@ -1,46 +1,77 @@
-Multi-modal Emotion Recognition: Text, Audio, and Video
-👥 Team
-Name	SRN	Section
-NS Tushar	PES2UG22CS327	F
-Mrunal Anandache	PES2UG22CS323	F
-M V Parth	PES2UG22CS325	F
-Shambhavi Raikar	PESS2UG22CS919	F
-🚀 Project Overview
-We developed a multi-modal emotion recognition model for the PES University ML Hackathon using features from text, audio, and video. Fusing these modalities enhances emotion classification accuracy over individual channels.
+# 🎭 Multi-modal Emotion Recognition: Text, Audio, and Video
 
-💾 Data Processing & Feature Extraction
-Text
-Cleaned (lowercase, remove non-letters)
+## 👥 Team
 
-Tokenized using NLTK
+| Name | SRN | Section |
+|------|------|----------|
+| NS Tushar | PES2UG22CS327 | F |
+| Mrunal Anandache | PES2UG22CS323 | F |
+| M V Parth | PES2UG22CS325 | F |
+| Shambhavi Raikar | PESS2UG22CS919 | F |
 
-Stopword removal
+---
 
-Features via TfidfVectorizer
+## 🚀 Project Overview
 
-Audio
-Extracted from videos (pydub)
+This project was developed for the **PES University ML Hackathon**, focusing on **multi-modal emotion recognition** using **text, audio, and video** features.  
+By fusing these three modalities, we achieved improved emotion classification accuracy compared to models trained on individual channels.
 
-Converted to waveforms (librosa)
+---
 
-Extracted features: MFCC, Chroma, Spectral Contrast, Zero Crossing Rate, Tempo
+## 💾 Data Processing & Feature Extraction
 
-Video
-Captured 5 evenly spaced frames per video (64×64 px)
+### 📝 Text
+- Cleaned (lowercased, removed non-letter characters)  
+- Tokenized using **NLTK**  
+- Removed stopwords  
+- Extracted features via **TF-IDF Vectorizer**
 
-Padded short videos at the end
+### 🎵 Audio
+- Extracted audio from videos using **pydub**  
+- Converted to waveforms using **librosa**  
+- Extracted features:
+  - MFCC  
+  - Chroma  
+  - Spectral Contrast  
+  - Zero Crossing Rate  
+  - Tempo  
 
-Extracted optical flow and color histogram features
+### 🎥 Video
+- Captured **5 evenly spaced frames** per video (64×64 px)  
+- Padded short videos at the end  
+- Extracted **optical flow** and **color histogram** features  
 
-🔗 Feature Fusion & Modeling
-Early fusion: Concatenate features from multiple modalities before training
+---
 
-PCA to reduce audio feature dimensionality and prevent overfitting
+## 🔗 Feature Fusion & Modeling
 
-Random Forest used for classification
+- **Early Fusion:** Concatenated features from multiple modalities before training  
+- **PCA:** Applied to reduce audio feature dimensionality and prevent overfitting  
+- **Classifier:** Random Forest  
 
-📊 Results
-Modalities	Accuracy
-Audio + Text	0.50
-Video + Text	0.48
-Text-only models evaluated as well (accuracy, F1-score, precision) and showed meaningful contributions.
+---
+
+## 📊 Results
+
+| Modalities | Accuracy |
+|-------------|-----------|
+| Audio + Text | **0.50** |
+| Video + Text | **0.48** |
+
+Text-only models were also evaluated (accuracy, F1-score, precision) and showed meaningful contributions.
+
+---
+
+## 🧠 Key Insights
+- Multi-modal fusion improves robustness and overall performance.  
+- Audio features (MFCC, Chroma) contributed significantly to emotion prediction.  
+- PCA effectively reduced dimensionality without major performance loss.  
+
+---
+
+## 🏁 Future Work
+- Integration with transformer-based text encoders (e.g., BERT).  
+- Deep CNN/LSTM architectures for video and audio feature learning.  
+- Real-time emotion recognition deployment.  
+
+---
