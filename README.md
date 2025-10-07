@@ -69,9 +69,3 @@ Text-only models were also evaluated (accuracy, F1-score, precision) and showed 
 
 ---
 
-## 🏁 Future Work
-- Integration with transformer-based text encoders (e.g., BERT).  
-- Deep CNN/LSTM architectures for video and audio feature learning.  
-- Real-time emotion recognition deployment.  
-
----
